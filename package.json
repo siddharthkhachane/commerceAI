@@ -1,0 +1,16 @@
+{
+  "name": "commerceai",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n frontend,backend -c blue,green \"npm run dev --prefix frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "cd backend && .\\gradlew.bat bootRun --args=--spring.profiles.active=local",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "build": "npm run build --prefix frontend",
+    "lint": "npm run lint --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

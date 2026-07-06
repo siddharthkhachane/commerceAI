@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: commerceai-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/commerceai}
+    username: ${SPRING_DATASOURCE_USERNAME:commerceai}
+    password: ${SPRING_DATASOURCE_PASSWORD:commerceai}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: ${SERVER_PORT:8080}
+
+commerceai:
+  jwt:
+    secret: ${JWT_SECRET:commerceai-dev-secret-key-must-be-at-least-32-chars}
+    expiration-ms: ${JWT_EXPIRATION_MS:604800000}
