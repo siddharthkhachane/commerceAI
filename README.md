@@ -128,6 +128,21 @@ cd backend && ./gradlew bootRun --args='--spring.profiles.active=local'
 
 **Frontend routes:** `/login`, `/register`, `/dashboard` (protected), `/admin` (admin only)
 
+## Product Catalog (Phase 2)
+
+| Endpoint | Method | Access |
+|----------|--------|--------|
+| `/api/categories` | GET | Public |
+| `/api/categories/{slug}` | GET | Public |
+| `/api/products` | GET | Public (pagination, category filter, search) |
+| `/api/products/{slug}` | GET | Public |
+| `/api/admin/categories` | POST/PUT/DELETE | Admin |
+| `/api/admin/products` | POST/PUT/DELETE | Admin |
+
+**Local seed:** 8 categories and 100 products (picsum.photos images) on `local` profile startup.
+
+**Frontend routes:** `/`, `/products`, `/products/[slug]`, `/categories/[slug]`
+
 ## Development
 
 ```bash
