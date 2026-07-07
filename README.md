@@ -70,9 +70,24 @@ npm install          # root dev tooling (concurrently)
 cd frontend && npm install
 ```
 
-### 4. Run frontend and backend together
+### 4. Run everything (recommended)
 
 From the project root:
+
+```bash
+npm start
+```
+
+On Windows this runs `scripts/start.ps1`, which starts Postgres, ensures env files and dependencies, then launches frontend + backend.
+
+On macOS/Linux:
+
+```bash
+npm run start:unix
+# or: chmod +x scripts/start.sh && ./scripts/start.sh
+```
+
+### 5. Run frontend and backend only (Postgres already running)
 
 ```bash
 npm run dev

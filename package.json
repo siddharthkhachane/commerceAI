@@ -2,6 +2,8 @@
   "name": "commerceai",
   "private": true,
   "scripts": {
+    "start": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/start.ps1",
+    "start:unix": "bash ./scripts/start.sh",
     "dev": "concurrently -n frontend,backend -c blue,green \"npm run dev --prefix frontend\" \"npm run dev:backend\"",
     "dev:frontend": "npm run dev --prefix frontend",
     "dev:backend": "cd backend && .\\gradlew.bat bootRun --args=--spring.profiles.active=local",
