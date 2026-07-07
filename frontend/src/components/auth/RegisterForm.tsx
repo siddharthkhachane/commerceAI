@@ -49,7 +49,7 @@ export function RegisterForm() {
       footer={
         <>
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-zinc-950 hover:underline">
+          <Link href="/login" className="font-medium text-foreground hover:underline">
             Sign in
           </Link>
         </>
@@ -95,7 +95,7 @@ export function RegisterForm() {
           {fieldErrors.password && (
             <p className="text-sm text-red-600">{fieldErrors.password}</p>
           )}
-          <p className="text-xs text-zinc-500">At least 8 characters.</p>
+          <p className="text-xs text-muted-foreground">At least 8 characters.</p>
         </div>
 
         {error && (
@@ -107,7 +107,7 @@ export function RegisterForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-zinc-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Creating account…" : "Create account"}
         </button>

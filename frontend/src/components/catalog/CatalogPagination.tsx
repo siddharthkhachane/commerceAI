@@ -31,24 +31,24 @@ export function CatalogPagination({
       <Link
         href={buildHref(Math.max(0, page - 1))}
         aria-disabled={page <= 0}
-        className={`rounded-full border px-4 py-2 text-sm font-medium ${
+        className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
           page <= 0
-            ? "pointer-events-none border-zinc-200 text-zinc-300"
-            : "border-zinc-300 text-zinc-700 hover:bg-zinc-50"
+            ? "pointer-events-none border-border text-muted-foreground/40"
+            : "border-border bg-card text-foreground hover:bg-card-hover"
         }`}
       >
         Previous
       </Link>
-      <span className="text-sm text-zinc-600">
+      <span className="text-sm text-muted-foreground">
         Page {page + 1} of {totalPages}
       </span>
       <Link
         href={buildHref(Math.min(totalPages - 1, page + 1))}
         aria-disabled={page >= totalPages - 1}
-        className={`rounded-full border px-4 py-2 text-sm font-medium ${
+        className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
           page >= totalPages - 1
-            ? "pointer-events-none border-zinc-200 text-zinc-300"
-            : "border-zinc-300 text-zinc-700 hover:bg-zinc-50"
+            ? "pointer-events-none border-border text-muted-foreground/40"
+            : "border-border bg-card text-foreground hover:bg-card-hover"
         }`}
       >
         Next

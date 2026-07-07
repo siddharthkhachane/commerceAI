@@ -11,6 +11,8 @@ class UnauthorizedException(message: String) : ApiException(401, message)
 
 class NotFoundException(message: String) : ApiException(404, message)
 
+class BadRequestException(message: String) : ApiException(400, message)
+
 data class ErrorResponse(
     val message: String,
     val errors: Map<String, String>? = null,

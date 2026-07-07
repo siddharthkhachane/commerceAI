@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
@@ -11,6 +11,7 @@ import { ApiRequestError } from "@/lib/api";
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +25,7 @@ export function LoginForm() {
 
     try {
       await login({ email, password });
-      router.push("/dashboard");
+      router.push(searchParams.get("from") ?? "/dashboard");
     } catch (err) {
       if (err instanceof ApiRequestError) {
         setError(err.message);
@@ -43,7 +44,7 @@ export function LoginForm() {
       footer={
         <>
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="font-medium text-zinc-950 hover:underline">
+          <Link href="/register" className="font-medium text-foreground hover:underline">
             Create one
           </Link>
         </>
@@ -76,7 +77,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-zinc-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Signing in…" : "Sign in"}
         </button>

@@ -19,7 +19,7 @@ export function AuthField({
 }: AuthFieldProps) {
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="block text-sm font-medium text-zinc-700">
+      <label htmlFor={id} className="block text-sm font-medium text-foreground">
         {label}
       </label>
       <input
@@ -29,7 +29,7 @@ export function AuthField({
         onChange={(event) => onChange(event.target.value)}
         autoComplete={autoComplete}
         required={required}
-        className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-950 outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-200"
+        className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-foreground/30 focus:ring-2 focus:ring-ring/60"
       />
     </div>
   );

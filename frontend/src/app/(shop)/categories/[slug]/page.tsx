@@ -46,16 +46,16 @@ export default async function CategoryPage({
     ]);
 
     return (
-      <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <div className="mb-10 space-y-4">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+        <div className="mb-10 animate-fade-in-up space-y-4">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
             Category
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             {category.name}
           </h1>
           {category.description && (
-            <p className="max-w-2xl text-sm leading-7 text-zinc-600">
+            <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
               {category.description}
             </p>
           )}

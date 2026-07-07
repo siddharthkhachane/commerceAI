@@ -143,6 +143,21 @@ cd backend && ./gradlew bootRun --args='--spring.profiles.active=local'
 
 **Frontend routes:** `/`, `/products`, `/products/[slug]`, `/categories/[slug]`
 
+## Shopping Cart (Phase 3)
+
+| Endpoint | Method | Access |
+|----------|--------|--------|
+| `/api/cart` | GET | Authenticated |
+| `/api/cart/items` | POST | Authenticated |
+| `/api/cart/items/{productId}` | PUT/DELETE | Authenticated |
+| `/api/orders/checkout` | POST | Authenticated |
+| `/api/orders` | GET | Authenticated |
+| `/api/orders/{id}` | GET | Authenticated |
+
+Checkout creates a confirmed order (no payment), decrements stock, and clears the cart.
+
+**Frontend routes:** `/cart`, `/checkout`, `/orders`, `/orders/[id]`
+
 ## Development
 
 ```bash

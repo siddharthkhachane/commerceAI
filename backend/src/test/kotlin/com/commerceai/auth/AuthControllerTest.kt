@@ -2,7 +2,10 @@ package com.commerceai.auth
 
 import com.commerceai.auth.dto.LoginRequest
 import com.commerceai.auth.dto.RegisterRequest
-import com.commerceai.user.Role
+import com.commerceai.cart.CartItemRepository
+import com.commerceai.catalog.category.CategoryRepository
+import com.commerceai.catalog.product.ProductRepository
+import com.commerceai.order.OrderRepository
 import com.commerceai.user.UserRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
@@ -28,8 +31,24 @@ class AuthControllerTest {
     @Autowired
     private lateinit var userRepository: UserRepository
 
+    @Autowired
+    private lateinit var orderRepository: OrderRepository
+
+    @Autowired
+    private lateinit var cartItemRepository: CartItemRepository
+
+    @Autowired
+    private lateinit var productRepository: ProductRepository
+
+    @Autowired
+    private lateinit var categoryRepository: CategoryRepository
+
     @BeforeEach
     fun cleanDatabase() {
+        orderRepository.deleteAll()
+        cartItemRepository.deleteAll()
+        productRepository.deleteAll()
+        categoryRepository.deleteAll()
         userRepository.deleteAll()
     }
 

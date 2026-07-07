@@ -33,19 +33,19 @@ export default async function HomePage() {
         description="Discover premium pieces across apparel, home, and lifestyle — curated with the calm confidence of a modern retailer."
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Categories
             </p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-950">
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Shop by collection
             </h2>
           </div>
           <Link
             href="/products"
-            className="hidden text-sm font-medium text-zinc-700 hover:text-zinc-950 md:inline"
+            className="hidden text-sm font-medium text-muted-foreground transition hover:text-foreground md:inline"
           >
             View all
           </Link>
@@ -53,20 +53,20 @@ export default async function HomePage() {
         <CategoryGrid categories={categories} />
       </section>
 
-      <section className="bg-zinc-50">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+      <section className="border-t border-border bg-muted/40">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
           <div className="mb-8 flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 New arrivals
               </p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-950">
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 Featured products
               </h2>
             </div>
             <Link
               href="/products"
-              className="text-sm font-medium text-zinc-700 hover:text-zinc-950"
+              className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
             >
               Shop all
             </Link>

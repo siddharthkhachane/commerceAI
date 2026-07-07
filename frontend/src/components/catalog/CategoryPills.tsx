@@ -10,29 +10,41 @@ type CategoryPillsProps = {
 export function CategoryPills({ categories, activeSlug }: CategoryPillsProps) {
   return (
     <div className="flex flex-wrap gap-2">
-      <Link
-        href="/products"
-        className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-          !activeSlug
-            ? "bg-zinc-950 text-white"
-            : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
-        }`}
-      >
+      <Pill href="/products" active={!activeSlug}>
         All
-      </Link>
+      </Pill>
       {categories.map((category) => (
-        <Link
+        <Pill
           key={category.id}
           href={`/categories/${category.slug}`}
-          className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-            activeSlug === category.slug
-              ? "bg-zinc-950 text-white"
-              : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"
-          }`}
+          active={activeSlug === category.slug}
         >
           {category.name}
-        </Link>
+        </Pill>
       ))}
     </div>
+  );
+}
+
+function Pill({
+  href,
+  active,
+  children,
+}: {
+  href: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+        active
+          ? "bg-accent text-accent-foreground shadow-sm"
+          : "border border-border bg-card text-muted-foreground hover:border-foreground/20 hover:text-foreground"
+      }`}
+    >
+      {children}
+    </Link>
   );
 }
