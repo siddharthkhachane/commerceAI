@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ShoppingAssistantPanel } from "@/components/assistant/ShoppingAssistantPanel";
 import { CategoryGrid } from "@/components/catalog/CategoryGrid";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { ShopHero } from "@/components/catalog/ShopHero";
@@ -73,6 +74,10 @@ export default async function HomePage() {
           </div>
           <ProductGrid products={featured.content} />
         </div>
+      </section>
+
+      <section className="border-t border-border">
+        <ShoppingAssistantPanel />
       </section>
     </>
   );

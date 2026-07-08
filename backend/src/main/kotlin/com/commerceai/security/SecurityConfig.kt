@@ -30,6 +30,8 @@ class SecurityConfig(
             .authorizeHttpRequests {
                 it.requestMatchers("/api/health").permitAll()
                 it.requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
+                it.requestMatchers(HttpMethod.POST, "/api/assistant/shopping").permitAll()
+                it.requestMatchers(HttpMethod.POST, "/api/assistant/product-search").permitAll()
                 it.requestMatchers(HttpMethod.GET, "/api/categories", "/api/categories/**").permitAll()
                 it.requestMatchers(HttpMethod.GET, "/api/products", "/api/products/**").permitAll()
                 it.requestMatchers("/api/admin/**").hasRole("ADMIN")

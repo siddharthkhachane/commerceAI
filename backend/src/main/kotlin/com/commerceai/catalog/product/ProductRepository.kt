@@ -35,6 +35,26 @@ interface ProductRepository : JpaRepository<Product, Long> {
         """
         SELECT p FROM Product p
         JOIN FETCH p.category c
+        WHERE p.isActive = true
+        AND (:categoryFilterOff = true OR c.slug IN :categorySlugs)
+        AND (:search IS NULL OR :search = '' OR
+            LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%')) OR
+            LOWER(p.description) LIKE LOWER(CONCAT('%', :search, '%')))
+        AND (:maxPrice IS NULL OR p.price <= :maxPrice)
+        """,
+    )
+    fun findActiveProductsByFilters(
+        @Param("categoryFilterOff") categoryFilterOff: Boolean,
+        @Param("categorySlugs") categorySlugs: List<String>,
+        @Param("search") search: String?,
+        @Param("maxPrice") maxPrice: java.math.BigDecimal?,
+        pageable: Pageable,
+    ): Page<Product>
+
+    @Query(
+        """
+        SELECT p FROM Product p
+        JOIN FETCH p.category c
         WHERE p.slug = :slug AND p.isActive = true
         """,
     )
