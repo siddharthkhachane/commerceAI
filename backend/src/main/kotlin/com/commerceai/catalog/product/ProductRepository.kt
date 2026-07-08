@@ -61,4 +61,47 @@ interface ProductRepository : JpaRepository<Product, Long> {
     fun findActiveBySlug(@Param("slug") slug: String): Optional<Product>
 
     fun countByIsActiveTrue(): Long
+
+    fun countByStockQuantityLessThan(threshold: Int): Long
+
+    @Query("SELECT COALESCE(SUM(p.stockQuantity), 0) FROM Product p")
+    fun sumStockQuantity(): Long?
+
+    @Query(
+        """
+        SELECT p FROM Product p
+        JOIN FETCH p.category c
+        ORDER BY p.createdAt DESC
+        """,
+    )
+    fun findAllWithCategory(pageable: Pageable): Page<Product>
+
+    @Query(
+        """
+        SELECT p FROM Product p
+        JOIN FETCH p.category c
+        """,
+    )
+    fun findAllWithCategory(): List<Product>
+
+    @Query(
+        """
+        SELECT p FROM Product p
+        JOIN FETCH p.category c
+        WHERE (:search IS NULL OR :search = '' OR
+            LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%')) OR
+            LOWER(p.description) LIKE LOWER(CONCAT('%', :search, '%')))
+        AND (:categoryId IS NULL OR c.id = :categoryId)
+        AND (:lowStockOnly = false OR p.stockQuantity < :lowStockThreshold)
+        AND (:activeStatus IS NULL OR p.isActive = :activeStatus)
+        """,
+    )
+    fun findAdminProducts(
+        @Param("search") search: String?,
+        @Param("categoryId") categoryId: Long?,
+        @Param("lowStockOnly") lowStockOnly: Boolean,
+        @Param("lowStockThreshold") lowStockThreshold: Int,
+        @Param("activeStatus") activeStatus: Boolean?,
+        pageable: Pageable,
+    ): Page<Product>
 }

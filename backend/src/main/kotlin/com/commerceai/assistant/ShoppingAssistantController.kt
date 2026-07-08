@@ -1,5 +1,7 @@
 package com.commerceai.assistant
 
+import com.commerceai.assistant.dto.ProductCompareAssistantRequest
+import com.commerceai.assistant.dto.ProductCompareAssistantResponse
 import com.commerceai.assistant.dto.ProductSearchAssistantRequest
 import com.commerceai.assistant.dto.ProductSearchAssistantResponse
 import com.commerceai.assistant.dto.ShoppingAssistantRequest
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 class ShoppingAssistantController(
     private val shoppingAssistantService: ShoppingAssistantService,
     private val productSearchAssistantService: ProductSearchAssistantService,
+    private val productCompareAssistantService: ProductCompareAssistantService,
 ) {
     @PostMapping("/shopping")
     fun recommendShopping(
@@ -25,4 +28,9 @@ class ShoppingAssistantController(
     fun searchProductsWithAssistant(
         @Valid @RequestBody request: ProductSearchAssistantRequest,
     ): ProductSearchAssistantResponse = productSearchAssistantService.search(request)
+
+    @PostMapping("/compare")
+    fun compareProducts(
+        @Valid @RequestBody request: ProductCompareAssistantRequest,
+    ): ProductCompareAssistantResponse = productCompareAssistantService.compare(request)
 }

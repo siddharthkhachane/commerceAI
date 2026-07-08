@@ -1,15 +1,13 @@
 "use client";
 
 import { DashboardShell, ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { ProfilePageContent } from "@/components/profile/ProfilePageContent";
 
 export default function DashboardPage() {
   return (
     <ProtectedRoute>
-      <DashboardShell>
-        <p className="text-sm leading-7 text-zinc-600">
-          Your account is ready. Product browsing, cart, and AI shopping
-          assistant features will appear in upcoming phases.
-        </p>
+      <DashboardShell title="Profile">
+        <ProfilePageContent />
       </DashboardShell>
     </ProtectedRoute>
   );

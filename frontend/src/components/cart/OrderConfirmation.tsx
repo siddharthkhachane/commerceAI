@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { formatPrice } from "@/lib/format";
 import * as ordersApi from "@/lib/orders";
+import { RelatedProductsSection } from "@/components/recommendations/RelatedProductsSection";
 import type { Order } from "@/types/cart";
 
 type OrderConfirmationProps = {
@@ -93,6 +94,8 @@ export function OrderConfirmation({ orderId }: OrderConfirmationProps) {
           View orders
         </Link>
       </div>
+
+      <RelatedProductsSection productIds={order.items.map((item) => item.productId)} />
     </div>
   );
 }

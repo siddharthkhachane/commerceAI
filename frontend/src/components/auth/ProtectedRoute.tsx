@@ -44,7 +44,13 @@ export function ProtectedRoute({ children, requiredRole }: ProtectedRouteProps) 
   return children;
 }
 
-export function DashboardShell({ children }: { children: React.ReactNode }) {
+export function DashboardShell({
+  children,
+  title = "Dashboard",
+}: {
+  children: React.ReactNode;
+  title?: string;
+}) {
   const router = useRouter();
   const { user, logout } = useAuth();
 
@@ -54,14 +60,14 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8 px-6 py-16">
+    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-6 py-16">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
             CommerceAI
           </p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-950">
-            Dashboard
+            {title}
           </h1>
         </div>
         <button

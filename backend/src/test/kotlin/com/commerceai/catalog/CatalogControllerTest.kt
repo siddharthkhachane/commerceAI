@@ -5,7 +5,7 @@ import com.commerceai.catalog.category.CategoryRepository
 import com.commerceai.catalog.dto.CreateCategoryRequest
 import com.commerceai.catalog.product.ProductRepository
 import com.commerceai.order.OrderRepository
-import com.commerceai.user.UserRepository
+import com.commerceai.support.TestDataCleaner
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -35,21 +35,14 @@ class CatalogControllerTest {
     private lateinit var productRepository: ProductRepository
 
     @Autowired
-    private lateinit var userRepository: UserRepository
-
-    @Autowired
-    private lateinit var cartItemRepository: CartItemRepository
-
-    @Autowired
     private lateinit var orderRepository: OrderRepository
+
+    @Autowired
+    private lateinit var testDataCleaner: TestDataCleaner
 
     @BeforeEach
     fun cleanDatabase() {
-        orderRepository.deleteAll()
-        cartItemRepository.deleteAll()
-        productRepository.deleteAll()
-        categoryRepository.deleteAll()
-        userRepository.deleteAll()
+        testDataCleaner.cleanAll()
     }
 
     @Test

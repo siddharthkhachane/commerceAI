@@ -12,4 +12,7 @@ class CurrentUserService(
     fun requireUser(userDetails: UserDetails): User =
         userRepository.findByEmail(userDetails.username)
             .orElseThrow { NotFoundException("User not found") }
+
+    fun findUser(userDetails: UserDetails): User? =
+        userRepository.findByEmail(userDetails.username).orElse(null)
 }

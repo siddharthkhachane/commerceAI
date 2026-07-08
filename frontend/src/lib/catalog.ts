@@ -17,6 +17,10 @@ export function getCategories(): Promise<Category[]> {
   return fetchApiServer<Category[]>("/api/categories");
 }
 
+export function getCategoriesClient(): Promise<Category[]> {
+  return fetchApi<Category[]>("/api/categories");
+}
+
 export function getCategory(slug: string): Promise<Category> {
   return fetchApiServer<Category>(`/api/categories/${slug}`);
 }

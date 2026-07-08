@@ -21,7 +21,7 @@ class User(
     @Column(nullable = false)
     val passwordHash: String,
     @Column(nullable = false)
-    val fullName: String,
+    var fullName: String,
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     val role: Role,

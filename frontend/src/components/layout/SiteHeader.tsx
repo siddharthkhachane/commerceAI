@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
 import { useCart } from "@/components/cart/CartProvider";
+import { useCompare } from "@/components/compare/CompareProvider";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { SearchBar } from "@/components/ui/SearchBar";
 import type { Category } from "@/types/catalog";
@@ -18,6 +19,7 @@ export function SiteHeader({ categories = [] }: SiteHeaderProps) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const { cart } = useCart();
+  const { items: compareItems } = useCompare();
   const [mobileOpen, setMobileOpen] = useState(false);
   const isAuthPage = pathname === "/login" || pathname === "/register";
 
@@ -65,6 +67,20 @@ export function SiteHeader({ categories = [] }: SiteHeaderProps) {
 
           <div className="ml-auto flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
+
+            {!isAuthPage && (
+              <Link
+                href="/compare"
+                className="relative hidden h-10 items-center rounded-full border border-border bg-card px-4 text-sm font-medium text-foreground transition hover:bg-card-hover sm:inline-flex"
+              >
+                Compare
+                {compareItems.length > 0 && (
+                  <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-semibold text-accent-foreground">
+                    {compareItems.length}
+                  </span>
+                )}
+              </Link>
+            )}
 
             {!isAuthPage && (
               <Link
@@ -146,6 +162,12 @@ export function SiteHeader({ categories = [] }: SiteHeaderProps) {
               >
                 Shop All
               </Link>
+              <Link
+                href="/compare"
+                className="shrink-0 font-medium text-muted-foreground transition hover:text-foreground"
+              >
+                Compare
+              </Link>
               {categories.map((category) => (
                 <Link
                   key={category.id}
@@ -186,6 +208,9 @@ export function SiteHeader({ categories = [] }: SiteHeaderProps) {
               <MobileLink href="/products" onNavigate={() => setMobileOpen(false)}>
                 Shop All
               </MobileLink>
+              <MobileLink href="/compare" onNavigate={() => setMobileOpen(false)}>
+                Compare
+              </MobileLink>
               {categories.map((category) => (
                 <MobileLink
                   key={category.id}
@@ -195,6 +220,9 @@ export function SiteHeader({ categories = [] }: SiteHeaderProps) {
                   {category.name}
                 </MobileLink>
               ))}
+              <MobileLink href="/dashboard" onNavigate={() => setMobileOpen(false)}>
+                Profile
+              </MobileLink>
               <MobileLink href="/orders" onNavigate={() => setMobileOpen(false)}>
                 Orders
               </MobileLink>

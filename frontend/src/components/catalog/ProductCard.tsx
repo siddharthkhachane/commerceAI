@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { AddToCompareButton } from "@/components/compare/AddToCompareButton";
+import { SaveProductButton } from "@/components/profile/SaveProductButton";
 import { formatPrice } from "@/lib/format";
 import type { ProductSummary } from "@/types/catalog";
 
@@ -26,6 +28,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             className="object-cover transition duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+          <div className="absolute right-3 top-3 z-10 flex gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
+            <SaveProductButton product={product} compact />
+            <AddToCompareButton product={product} compact />
+          </div>
           <div className="absolute bottom-4 left-4 right-4 translate-y-2 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <span className="inline-flex rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium text-zinc-900 shadow-sm backdrop-blur dark:bg-zinc-900/90 dark:text-zinc-100">
               View product

@@ -2,6 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { AssistantChatPanel } from "@/components/assistant/AssistantChatPanel";
+import { AddToCompareButton } from "@/components/compare/AddToCompareButton";
+import { SaveProductButton } from "@/components/profile/SaveProductButton";
+import { SimilarProductsSection } from "@/components/recommendations/SimilarProductsSection";
 import { formatPrice } from "@/lib/format";
 import type { ProductDetail } from "@/types/catalog";
 
@@ -64,7 +68,17 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
           </div>
 
           <AddToCartButton product={product} />
+          <div className="mt-3 flex flex-wrap gap-3">
+            <SaveProductButton product={product} />
+            <AddToCompareButton product={product} />
+          </div>
         </div>
+      </div>
+
+      <SimilarProductsSection slug={product.slug} inStock={inStock} />
+
+      <div className="mt-16">
+        <AssistantChatPanel viewingProductSlug={product.slug} />
       </div>
     </div>
   );

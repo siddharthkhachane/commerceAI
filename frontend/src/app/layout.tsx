@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { CartProvider } from "@/components/cart/CartProvider";
+import { CompareProvider } from "@/components/compare/CompareProvider";
+import { SavedItemsProvider } from "@/components/profile/SavedItemsProvider";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import "./globals.css";
@@ -39,7 +41,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider>
           <AuthProvider>
-            <CartProvider>{children}</CartProvider>
+            <CartProvider>
+              <CompareProvider>
+                <SavedItemsProvider>{children}</SavedItemsProvider>
+              </CompareProvider>
+            </CartProvider>
           </AuthProvider>
         </ThemeProvider>
       </body>
