@@ -60,9 +60,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             <div className="mt-4 flex flex-col gap-2">
               <Link
                 href="/"
-                className="text-sm text-muted-foreground transition hover:text-foreground"
+                className="inline-flex rounded-xl border border-border bg-background px-4 py-2.5 text-center text-sm font-medium text-foreground transition hover:bg-muted"
               >
-                View storefront
+                Back to storefront
               </Link>
               <button
                 type="button"
@@ -82,13 +82,21 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Admin</p>
                 <p className="text-sm font-medium text-foreground">{user?.fullName}</p>
               </div>
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-medium"
-              >
-                Sign out
-              </button>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/"
+                  className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:bg-muted"
+                >
+                  Storefront
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="rounded-full border border-border px-3 py-1.5 text-xs font-medium"
+                >
+                  Sign out
+                </button>
+              </div>
             </div>
             <div className="mt-4 flex gap-2 overflow-x-auto">
               {navItems.map((item) => (

@@ -27,7 +27,7 @@ export function RegisterForm() {
 
     try {
       await register({ fullName, email, password });
-      router.push("/dashboard");
+      router.push("/");
     } catch (err) {
       if (err instanceof ApiRequestError) {
         setError(err.message);

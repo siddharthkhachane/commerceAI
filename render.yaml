@@ -1,0 +1,62 @@
+databases:
+  - name: commerceai-db
+    plan: free
+    databaseName: commerceai
+    user: commerceai
+
+services:
+  - type: web
+    name: commerceai-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_INITIAL_PASSWORD
+        value: admin12345
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: commerceai-web
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: PGHOST
+        fromDatabase:
+          name: commerceai-db
+          property: host
+      - key: PGPORT
+        fromDatabase:
+          name: commerceai-db
+          property: port
+      - key: PGDATABASE
+        fromDatabase:
+          name: commerceai-db
+          property: database
+      - key: PGUSER
+        fromDatabase:
+          name: commerceai-db
+          property: user
+      - key: PGPASSWORD
+        fromDatabase:
+          name: commerceai-db
+          property: password
+
+  - type: web
+    name: commerceai-web
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: commerceai-api
+          envVarKey: RENDER_EXTERNAL_URL

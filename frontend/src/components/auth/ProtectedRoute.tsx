@@ -61,22 +61,39 @@ export function DashboardShell({
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-6 py-16">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <Link
+            href="/"
+            className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500 transition hover:text-zinc-700"
+          >
             CommerceAI
-          </p>
+          </Link>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-950">
             {title}
           </h1>
         </div>
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
-        >
-          Sign out
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href="/"
+            className="rounded-lg bg-zinc-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-800"
+          >
+            Continue shopping
+          </Link>
+          <Link
+            href="/orders"
+            className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
+          >
+            Orders
+          </Link>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
+          >
+            Sign out
+          </button>
+        </div>
       </div>
 
       <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">

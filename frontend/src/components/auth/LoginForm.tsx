@@ -25,7 +25,7 @@ export function LoginForm() {
 
     try {
       await login({ email, password });
-      router.push(searchParams.get("from") ?? "/dashboard");
+      router.push(searchParams.get("from") ?? "/");
     } catch (err) {
       if (err instanceof ApiRequestError) {
         setError(err.message);
